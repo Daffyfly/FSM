@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="test2" qt:editorversion="4.2.1" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" initial="State_1">
+    <qt:editorinfo initialGeometry="58.62;178.95;-20;-20;40;40"/>
+    <state id="State_1">
+        <qt:editorinfo scenegeometry="162.49;277.68;102.49;227.68;120;100" geometry="162.49;277.68;-60;-50;120;100"/>
+        <transition type="external" event="Transition_1" target="State_3">
+            <send event="event_1"/>
+        </transition>
+        <onexit>
+            <send event="salut"/>
+        </onexit>
+    </state>
+    <state id="State_2">
+        <qt:editorinfo scenegeometry="359.95;277.68;299.95;227.68;120;100" geometry="359.95;277.68;-60;-50;120;100"/>
+        <transition type="external" event="Transition_3" target="State_1">
+            <qt:editorinfo endTargetFactors="85.54;49.11"/>
+            <send event="event_3"/>
+        </transition>
+        <onentry>
+            <send event="yolo"/>
+        </onentry>
+    </state>
+    <state id="State_3">
+        <qt:editorinfo scenegeometry="276.65;135.76;216.65;85.76;120;100" geometry="276.65;135.76;-60;-50;120;100"/>
+        <transition type="external" event="Transition_2" target="State_2">
+            <qt:editorinfo endTargetFactors="34.88;23.40"/>
+            <send event="event_2"/>
+        </transition>
+        <onexit>
+            <send event="allo"/>
+        </onexit>
+    </state>
+</scxml>

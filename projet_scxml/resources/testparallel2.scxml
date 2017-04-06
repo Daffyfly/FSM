@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="testparallel2" qt:editorversion="4.2.1" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" initial="Parallel_1">
+    <qt:editorinfo initialGeometry="198.49;9.26;-20;-20;40;40"/>
+    <parallel id="Parallel_1">
+        <qt:editorinfo scenegeometry="125.46;109.02;14.16;59.02;632.04;588" geometry="125.46;109.02;-111.30;-50;632.04;588"/>
+        <state id="State_1">
+            <qt:editorinfo scenegeometry="85.35;230.37;-12.12;115.65;294.72;377.72" geometry="6.17;146.04;-97.47;-114.72;294.72;377.72"/>
+            <state id="State_3">
+                <qt:editorinfo scenegeometry="67.88;394.92;7.88;344.92;120;100" geometry="-17.47;164.55;-60;-50;120;100"/>
+                <transition type="external" event="pass1" target="State_5">
+                    <qt:editorinfo localGeometry="27.57;-116.37" movePoint="8.23;-19.54" endTargetFactors="23.54;74.83"/>
+                </transition>
+            </state>
+            <state id="State_5">
+                <qt:editorinfo scenegeometry="195.40;228.31;135.40;178.31;120;100" geometry="110.05;-2.06;-60;-50;120;100"/>
+                <transition type="external" event="pass2" target="State_3">
+                    <qt:editorinfo localGeometry="-6.35;88.44" movePoint="4.12;46.28"/>
+                    <send event="pass4"/>
+                </transition>
+            </state>
+        </state>
+        <state id="State_2">
+            <qt:editorinfo scenegeometry="379.49;237.57;292.30;113.39;251.19;381.18" geometry="300.31;153.24;-87.19;-124.18;251.19;381.18"/>
+            <state id="State_4">
+                <qt:editorinfo scenegeometry="373.33;387.72;313.33;337.72;120;100" geometry="-6.16;150.15;-60;-50;120;100"/>
+                <transition type="external" event="pass3" target="State_6">
+                    <qt:editorinfo localGeometry="67.87;-73.03" movePoint="50.39;16.45" endTargetFactors="30.34;80.14"/>
+                </transition>
+            </state>
+            <state id="State_6">
+                <qt:editorinfo scenegeometry="453.54;226.26;393.54;176.26;120;100" geometry="74.05;-11.31;-60;-50;120;100"/>
+                <transition type="external" event="pass4" target="State_4">
+                    <qt:editorinfo localGeometry="-104.90;63.77" movePoint="-48.33;11.31" endTargetFactors="17.48;25.18"/>
+                    <send event="ididit"/>
+                </transition>
+            </state>
+        </state>
+    </parallel>
+</scxml>

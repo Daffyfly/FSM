@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="lololol" qt:editorversion="4.2.1" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" initial="Parallel_1">
+    <parallel id="Parallel_1">
+        <qt:editorinfo scenegeometry="79.20;131.64;18.27;50.71;531.93;475.93" geometry="79.20;131.64;-60.93;-80.93;531.93;475.93"/>
+        <state id="State_2">
+            <qt:editorinfo scenegeometry="103.87;218.72;38.27;145.86;238.60;319.86" geometry="24.67;87.08;-65.60;-72.86;238.60;319.86"/>
+            <state id="State_4">
+                <qt:editorinfo scenegeometry="120.33;379.49;60.33;329.49;120;100" geometry="16.46;160.77;-60;-50;120;100"/>
+                <transition type="external" event="Transition_1" target="State_5">
+                    <qt:editorinfo endTargetFactors="15.21;84.58"/>
+                </transition>
+                <onentry>
+                    <send/>
+                </onentry>
+            </state>
+            <state id="State_5">
+                <qt:editorinfo scenegeometry="172.78;255.05;112.78;205.05;120;100" geometry="68.91;36.33;-60;-50;120;100"/>
+            </state>
+        </state>
+        <state id="State_3">
+            <qt:editorinfo scenegeometry="355.85;217;295.85;119.27;229.46;351.73" geometry="276.65;85.36;-60;-97.73;229.46;351.73"/>
+            <state id="State_6">
+                <qt:editorinfo scenegeometry="384.64;385.67;324.64;335.67;120;100" geometry="28.79;168.67;-60;-50;120;100"/>
+                <transition type="external" event="Transition_2" target="State_7">
+                    <qt:editorinfo endTargetFactors="28.07;85.46"/>
+                </transition>
+            </state>
+            <state id="State_7">
+                <qt:editorinfo scenegeometry="381.55;230.37;321.55;180.37;120;100" geometry="25.70;13.37;-60;-50;120;100"/>
+                <transition type="external" event="Transition_3" target="State_6">
+                    <qt:editorinfo endTargetFactors="74.95;13.64"/>
+                </transition>
+            </state>
+        </state>
+    </parallel>
+</scxml>
