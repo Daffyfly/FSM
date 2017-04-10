@@ -2,37 +2,41 @@
 
 using namespace std;
 
-void MachineState::start(){
-	currentState= State_1;
+static void salut_action(){
+	cout<<"Sent salut"<<endl;
+}
 
+static void lol_action(){
+	cout<<"Sent lol"<<endl;
+}
+
+static void yolo_action(){
+	cout<<"Sent yolo"<<endl;
+}
+
+static void pass_action(){
+	cout<<"Done pass"<<endl;
+}
+
+void MachineState::link(EventOut e, function<void()> f){
+    mapfunctions[e]= f;
+}
+
+void MachineState::link(EventIn e, function<void()> f){
+    mapfunctionsin[e]= f;
+}
+
+void MachineState::start(){
+	currentState= State_18;
+
+	mapfunctions.emplace(salut,&salut_action);
+	mapfunctions.emplace(lol,&lol_action);
+	mapfunctions.emplace(yolo,&yolo_action);
+	mapfunctionsin.emplace(pass,&pass_action);
 }
 
 void MachineState::log(string s){
 	cout<<"Entering state " + s<<endl;
-}
-
-void MachineState::yolo_action(){
-	cout<<"Sent yolo"<<endl;
-}
-
-void MachineState::event_3_action(){
-	cout<<"Sent event_3"<<endl;
-}
-
-void MachineState::allo_action(){
-	cout<<"Sent allo"<<endl;
-}
-
-void MachineState::event_2_action(){
-	cout<<"Sent event_2"<<endl;
-}
-
-void MachineState::salut_action(){
-	cout<<"Sent salut"<<endl;
-}
-
-void MachineState::event_1_action(){
-	cout<<"Sent event_1"<<endl;
 }
 
 
@@ -40,40 +44,53 @@ void MachineState::activate(EventIn event){
 	q.push(event);
 	while(!q.empty()){
 		event = q.front();
+		mapfunctionsin[event]();
 		q.pop();
 		switch(currentState){
-			case State_1:
+			case State_18:
 				switch(event){
-					case Transition_1:
-						cout<<"Doing Transition_1 to State_3 "<<endl;
-						currentState=State_3;
-						log("State_3");
-						salut_action();
-						event_1_action();
+					case pass:
+						currentState=State_11_State_12_State_24;
+						log("State_11_State_12_State_24");
+						mapfunctions[yolo]();
+						mapfunctions[lol]();
 						break;
 					default: break;
 				}
 				break;
-			case State_3:
+			case State_11_State_12_State_24:
 				switch(event){
-					case Transition_2:
-						cout<<"Doing Transition_2 to State_2 "<<endl;
-						currentState=State_2;
-						log("State_2");
-						allo_action();
-						event_2_action();
-						yolo_action();
+					case pass:
+						currentState=State_19_State_21_State_10_State_25;
+						log("State_19_State_21_State_10_State_25");
+						mapfunctions[salut]();
 						break;
 					default: break;
 				}
 				break;
-			case State_2:
+			case State_19_State_21_State_10_State_25:
 				switch(event){
-					case Transition_3:
-						cout<<"Doing Transition_3 to State_1 "<<endl;
-						currentState=State_1;
-						log("State_1");
-						event_3_action();
+					case pass:
+						currentState=State_20_State_22_State_14_State_24;
+						log("State_20_State_22_State_14_State_24");
+						break;
+					default: break;
+				}
+				break;
+			case State_20_State_22_State_14_State_24:
+				switch(event){
+					case pass:
+						currentState=State_20_State_22_State_14_State_25;
+						log("State_20_State_22_State_14_State_25");
+						break;
+					default: break;
+				}
+				break;
+			case State_20_State_22_State_14_State_25:
+				switch(event){
+					case pass:
+						currentState=State_20_State_22_State_14_State_24;
+						log("State_20_State_22_State_14_State_24");
 						break;
 					default: break;
 				}

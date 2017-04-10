@@ -2,31 +2,31 @@
 <scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="substate" qt:editorversion="4.2.1" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" initial="A">
     <state id="A">
         <qt:editorinfo geometry="153.24;203.63;-95.89;-101.01;539.89;364.01" scenegeometry="153.24;203.63;57.35;102.62;539.89;364.01"/>
-        <state id="A.1">
+        <state id="A_1">
             <qt:editorinfo geometry="-6.17;36.93;-69.72;-50;185.72;206" scenegeometry="147.07;240.56;77.35;190.56;185.72;206"/>
-            <state id="A.1.a">
+            <state id="A_1_a">
                 <qt:editorinfo geometry="10.28;53.57;-60;-50;120;100" scenegeometry="157.35;294.13;97.35;244.13;120;100"/>
-                <transition type="external" event="A.1.atoA" target="A">
+                <transition type="external" event="A_1_atoA" target="A">
                     <qt:editorinfo endTargetFactors="11.10;90.39" movePoint="2.06;27.77"/>
                 </transition>
-                <transition type="external" event="A.1.atoA.2" target="A.2">
+                <transition type="external" event="A_1_atoA_2" target="A_2">
                     <qt:editorinfo endTargetFactors="48.16;72.85" localGeometry="151.04;46.74"/>
                 </transition>
             </state>
-            <transition type="external" event="A.1toA.1.a" target="A.1.a">
+            <transition type="external" event="A_1toA_1_a" target="A_1_a">
                 <qt:editorinfo endTargetFactors="63.61;87.24" movePoint="-28.80;11.31" startTargetFactors="87.95;77.60"/>
             </transition>
         </state>
-        <state id="A.2">
+        <state id="A_2">
             <qt:editorinfo geometry="287.95;28.53;-77;-45;184;211" scenegeometry="441.19;232.16;364.19;187.16;184;211"/>
-            <transition type="external" event="A.2toA" target="A">
+            <transition type="external" event="A_2toA" target="A">
                 <qt:editorinfo endTargetFactors="46.99;27.06"/>
             </transition>
         </state>
-        <transition type="internal" event="AtoA.1" target="A.1">
+        <transition type="internal" event="AtoA_1" target="A_1">
             <qt:editorinfo endTargetFactors="93.80;47.94"/>
         </transition>
-        <transition type="external" event="AtoA.2" target="A.2">
+        <transition type="external" event="AtoA_2" target="A_2">
             <qt:editorinfo endTargetFactors="20.39;49.29"/>
         </transition>
         <transition type="external" event="AtoB" target="B">
@@ -35,13 +35,13 @@
     </state>
     <state id="B">
         <qt:editorinfo geometry="310.59;575.92;-239;-95.57;517;178.57" scenegeometry="310.59;575.92;71.59;480.35;517;178.57"/>
-        <state id="B.1">
+        <state id="B_1">
             <qt:editorinfo geometry="19.50;6.17;-60;-50;120;100" scenegeometry="330.09;582.09;270.09;532.09;120;100"/>
-            <transition type="external" event="B.1toB" target="B">
+            <transition type="external" event="B_1toB" target="B">
                 <qt:editorinfo endTargetFactors="78.95;44.25"/>
             </transition>
         </state>
-        <transition type="external" event="BtoB.1" target="B.1">
+        <transition type="external" event="BtoB_1" target="B_1">
             <qt:editorinfo endTargetFactors="29.61;60.64" movePoint="-152.21;11.31" startTargetFactors="25.33;57.62"/>
         </transition>
         <transition type="external" event="BtoA" target="A">

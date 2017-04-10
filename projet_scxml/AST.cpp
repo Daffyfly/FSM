@@ -213,7 +213,9 @@ void AST::MiseAPlatParallele(){
                                                  all_state_list.end(),
                                                        ss),
                                      all_state_list.end());
+                ss->eraseTransitions();
             }
+            s->eraseSousEtats();
             all_state_list.push_back(s);
         }
         for(Transition * tt : all_transitions_list){
@@ -260,6 +262,7 @@ void AST::EnleverEtatEnTropRecursive(State * s) {
             EnleverEtatEnTropRecursive(t->To());
         }
     }
+    all_state_list.clear();
 }
 
 void AST::EnleverEtatEnTrop(){
@@ -268,17 +271,21 @@ void AST::EnleverEtatEnTrop(){
 
 
 AST::AST(vector<State*> state_list, vector<Parallel *> parallel_list, State * initial){
+    while(!initial->getChildStates().empty())
+        initial = initial->getChildStates().at(0);
     this->initial=initial;
     this->state_list=state_list;
     inheritParallel(parallel_list,state_list);
     this->all_parallel_list=parallel_list;
     this->all_state_list = allStateList(state_list);
+    state_list.clear();
     unordered_set<string> event_set_out;
     unordered_set<string> event_set_in;
 
     all_transitions_list = ArrangeTransitions();
     MiseAPlat();
     MiseAPlatParallele();
+    all_parallel_list.clear();
     EnleverEtatEnTrop();
 
     for(State * s : useful_states) {

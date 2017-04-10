@@ -18,8 +18,12 @@ vector<State*> State::getChildStates() {
     return childStates;
 }
 
-vector<Transition*> State::getTransitions(){
+vector<Transition*> State::getTransitions() {
     return transitions;
+}
+
+void State::eraseTransitions(){
+    transitions.clear();
 }
 
 vector<string> State::getOnEntryEvents(){

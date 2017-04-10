@@ -5,27 +5,27 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <functional>
+#include <map>
 
-enum State{State_1,State_3,State_2};
+enum State{State_18,State_11_State_12_State_24,State_19_State_21_State_10_State_25,State_20_State_22_State_14_State_24,State_20_State_22_State_14_State_25};
 
-enum EventIn{Transition_3,Transition_2,Transition_1};
+enum EventIn{pass};
 
-enum EventOut{yolo,event_3,allo,event_2,salut,event_1};
+enum EventOut{salut,lol,yolo};
 
 class MachineState
 	{
 	public:
+		void link(EventOut, std::function<void()> );
+		void link(EventIn, std::function<void()> );
 		void start();
 		void log(std::string);
 		void activate(EventIn);
 	private:
 		std::queue<EventIn> q;
-		void yolo_action();
-		void event_3_action();
-		void allo_action();
-		void event_2_action();
-		void salut_action();
-		void event_1_action();
+		std::map<EventOut,std::function<void()>> mapfunctions;
+		std::map<EventIn,std::function<void()>> mapfunctionsin;
 		
 		State currentState;
 	};

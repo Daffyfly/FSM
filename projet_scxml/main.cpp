@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    Xmlparser x("resources/.scxml");
+    Xmlparser x("resources/parallel.scxml");
     AST ast = x.getAST();
     std::string path = "result/";
     /*cout<<"Choose the path where you want to copy the files (with /)"<<endl;

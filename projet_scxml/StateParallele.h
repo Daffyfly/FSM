@@ -15,6 +15,7 @@ public:
     StateParallele(std::string name):State(name){}
     void addSousEtat(State*);
     std::vector<State*> getSousEtats();
+    void eraseSousEtats();
 };
 
 

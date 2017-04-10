@@ -106,7 +106,6 @@ static void fill_state_list(xml_node<> * root_node, vector<State*> & state_list)
     for(xml_node<> * state_node = root_node->first_node(); state_node; state_node=state_node->next_sibling()){
         string tmp = state_node->name();
         if(!tmp.compare("final") || !tmp.compare("state")) {
-            cout<<tmp<<endl;
             State *tmp_state = new State(state_node->first_attribute("id")->value());
             if (!(tmp_state->getName()).compare(initial)) {
                 initial_state = tmp_state;

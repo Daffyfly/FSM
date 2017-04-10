@@ -37,7 +37,7 @@ codeGenerator::codeGenerator(std::string path, std::string name_of_file, AST & a
 void codeGenerator::eventType(std::string event){
     for(string tmp : ast.getEventOutNames()){
         if(!tmp.compare(event)) {
-            app(dotcpp, 6, tmp + "_action();\n");
+            app(dotcpp, 6, "mapfunctions["+tmp+"]();\n");
             return;
         }
     }
@@ -68,7 +68,9 @@ void codeGenerator::generateFile() {
     app(doth, 0, "#include <iostream>\n");
     app(doth, 0, "#include <string>\n");
     app(doth, 0, "#include <vector>\n");
-    app(doth, 0, "#include <queue>\n\n");
+    app(doth, 0, "#include <queue>\n");
+    app(doth,0,"#include <functional>\n");
+    app(doth, 0, "#include <map>\n\n");
     app(doth, 0, "enum State{");
     bool first = true;
     for (State *s : ast.getAllStateList()) {
@@ -105,21 +107,39 @@ void codeGenerator::generateFile() {
         }
     }
     app(doth,0,"};\n\n");
+    for(string s : event_names_out){
+        app(dotcpp,0,"static void "+s+"_action(){\n\tcout<<\"Sent "+ s + "\"<<endl;\n}\n\n");
+    }
+    for(string s : event_names_in){
+        app(dotcpp,0,"static void "+s+"_action(){\n\tcout<<\"Done "+ s + "\"<<endl;\n}\n\n");
+    }
+    app(dotcpp,0, "void MachineState::link(EventOut e, function<void()> f){\n"
+            "    mapfunctions[e]= f;\n"
+            "}\n\n");
+    app(dotcpp,0, "void MachineState::link(EventIn e, function<void()> f){\n"
+            "    mapfunctionsin[e]= f;\n"
+            "}\n\n");
     app(doth,0,"class "+name_of_machine_state+"\n\t{\n");
     app(doth,1,"public:\n");
+    app(doth,2,"void link(EventOut, std::function<void()> );\n");
+    app(doth,2,"void link(EventIn, std::function<void()> );\n");
     app(doth,2,"void start();\n");
     app(dotcpp,0,"void "+name_of_machine_state+"::start(){\n");
     app(dotcpp,1,"currentState= " + ast.getInitial()->getName() +";\n\n");
+    for(string e : event_names_out){
+        app(dotcpp,1,"mapfunctions.emplace("+e+",&"+e+"_action);\n");
+    }
+    for(string e : event_names_in){
+        app(dotcpp,1,"mapfunctionsin.emplace("+e+",&"+e+"_action);\n");
+    }
     app(dotcpp,0,"}\n\n");
     app(doth,2,"void log(std::string);\n");
     app(dotcpp,0,"void "+name_of_machine_state+"::log(string s){\n\tcout<<\"Entering state \" + s<<endl;\n}\n\n");
     app(doth,2,"void activate(EventIn);\n");
     app(doth,1,"private:\n");
     app(doth,2,"std::queue<EventIn> q;\n");
-    for(string s : event_names_out){
-        app(dotcpp,0,"void "+name_of_machine_state+"::"+s+"_action(){\n\tcout<<\"Sent "+ s + "\"<<endl;\n}\n\n");
-        app(doth,2,"void "+s+"_action();\n");
-    }
+    app(doth,2,"std::map<EventOut,std::function<void()>> mapfunctions;\n");
+    app(doth,2,"std::map<EventIn,std::function<void()>> mapfunctionsin;\n");
     app(doth,2,"\n");
     app(doth,2,"State currentState;\n");
     app(doth,1,"};\n\n");
@@ -129,6 +149,7 @@ void codeGenerator::generateFile() {
     app(dotcpp,1,"q.push(event);\n");
     app(dotcpp,1,"while(!q.empty()){\n");
     app(dotcpp,2,"event = q.front();\n");
+    app(dotcpp,2, "mapfunctionsin[event]();\n");
     app(dotcpp,2,"q.pop();\n");
     app(dotcpp,2,"switch(currentState){\n");
     for(State * s : ast.getAllStateList()){
@@ -146,7 +167,6 @@ void codeGenerator::generateCodeOfState(State& s, int tab){
         app(dotcpp,tab+4,"switch(event){\n");
         for(Transition * t : s.getTransitions()) {
             app(dotcpp,tab+5,"case "+t->getEvent()+":\n");
-            app(dotcpp,tab+6,"cout<<\"Doing "+t->getEvent()+" to "+t->To()->getName()+" \"<<endl;\n");
             app(dotcpp,tab+6,"currentState="+t->To()->getName()+";\n");
             app(dotcpp,tab+6,"log(\""+t->To()->getName()+"\");\n");
             for(string s1 : s.getOnExitEvents()) {

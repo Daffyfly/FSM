@@ -28,6 +28,7 @@ public:
     std::vector<std::string> getOnExitEvents();
     std::vector<State*> getChildStates();
 
+    void eraseTransitions();
     void addEntryEvents(std::string e);
     void addExitEvents(std::string e);
     void addChildState(State * s);

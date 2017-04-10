@@ -13,3 +13,7 @@ void StateParallele::addSousEtat(State* s){
 std::vector<State*> StateParallele::getSousEtats(){
     return sousEtats;
 }
+
+void StateParallele::eraseSousEtats(){
+    sousEtats.clear();
+}

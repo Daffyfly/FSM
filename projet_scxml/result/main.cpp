@@ -8,8 +8,6 @@
 int main(void){
     MachineState m;
     m.start();
-    m.activate(Transition_2);
-    m.activate(Transition_1);
-    m.activate(Transition_2);
+    m.activate(pass);
     return 0;
 }
